@@ -6,18 +6,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Getter @Setter
 public class OrderItem {
 
     @Id @GeneratedValue
-    @Getter @Setter
     @Column(name = "order_item_key")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_key")
     private Item item;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_key")
     private Order order;
 
