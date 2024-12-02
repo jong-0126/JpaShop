@@ -1,5 +1,7 @@
 package jpabook.jpashop.service;
 
+import jpabook.jpashop.domain.item.Album;
+import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.repositroy.ItemRepository;
 import org.junit.Test;
@@ -26,25 +28,41 @@ public class ItemServiceTest {
     @Test
     public void 상품추가() throws Exception{
         //given
-        Item item = new Item(){};
-        item.setName("item");
+        Book book = new Book();
+        book.setName("book");
 
         //when
-        Long saveId = itemRepository.save(item);
+        Long saveId = itemRepository.save(book);
 
         //then
-        Assertions.assertEquals(item, itemRepository.findOne(saveId));
+        Assertions.assertEquals(book, itemRepository.findOne(saveId));
     }
 
     @Test
-    public void 상품찾기(){
+    public void 상품하나찾기(){
         //given
-        Item item = new Item() {
-        };
+        Book book = new Book();
+        book.setName("book");
+
+        Album album = new Album();
+        album.setArtist("artist");
+
+        //when
+        Long saveId = itemRepository.save(book);
+        itemService.findOne(saveId);
+
+        //then
+        Assertions.assertEquals(book, itemRepository.findOne(saveId));
+    }
+
+    @Test
+    public void 상품전부찾기(){
+        //given
 
         //when
 
         //then
+
     }
 
 }
